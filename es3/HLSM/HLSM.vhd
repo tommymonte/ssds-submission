@@ -33,6 +33,7 @@ architecture beh of HLSM is
                     c_state <= n_state;
                     acc <= acc_n;
                     i <= i_n;
+                    avg <= avg_n;
                 end if;
             end if;
         end process p1;
@@ -42,7 +43,6 @@ architecture beh of HLSM is
             acc_n <= acc;
             i_n <= i;
             Finish <= '0';
-            -- avg_n <= avg;
             N_address <= std_logic_vector(i); -- L'indirizzo segue il contatore di default
             Average  <= (others => '0'); -- Default output
             case c_state is

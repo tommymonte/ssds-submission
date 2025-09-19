@@ -1,10 +1,10 @@
 # --- CONFIGURAZIONE ---
 # Inserisci qui il nome dell'entità del tuo testbench (senza .vhd)
-TESTBENCH = tb_HLSM
+TESTBENCH = FSMD_tb
 
 # Inserisci qui tutti i tuoi file VHDL, l'ordine è importante
 # (prima le entità, poi i testbench che le usano)
-VHDL_FILES = HLSM.vhd tb_HLSM.vhd 
+VHDL_FILES = FSMD.vhd FSMD_tb.vhd 
 
 # Nome del file di output per le forme d'onda
 WAVE_FILE = wave.ghw
