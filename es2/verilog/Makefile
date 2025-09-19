@@ -5,12 +5,13 @@
 # Nome dell'eseguibile di simulazione che verrà creato
 TARGET = testbench
 
-# Elenco di TUTTI i file Verilog da compilare (design + testbench)
-# -> Modifica questa riga con i tuoi file!
-VLOG_FILES = fsm.v fsm_tb.v
+# Elenco dei file Verilog da compilare.
+# -> IMPORTANTE: Includi solo il file del testbench (top-level).
+#    Gli altri file verranno inclusi automaticamente dalla direttiva `include.
+VLOG_FILES = fsm_tb.v
 
 # Nome del file delle forme d'onda (waveform) che verrà generato
-WAVE_FILE = waveform.vcd
+WAVE_FILE = fsm_tb.vcd
 
 # -----------------------------------------------
 
@@ -23,10 +24,10 @@ VIEWER = gtkwave
 .PHONY: all compile run view clean
 
 # Target di default (eseguito con il comando 'make')
-all: compile
+all: run
 
 # Compila i sorgenti Verilog
-compile: $(VLOG_FILES)
+compile:
 	@echo "Compilando i file Verilog..."
 	$(COMPILER) -o $(TARGET) $(VLOG_FILES)
 	@echo "Compilazione completata. Eseguibile creato: $(TARGET)"
@@ -40,7 +41,7 @@ run: compile
 # Apre il file delle onde con GTKWave
 view:
 	@echo "Aprendo $(WAVE_FILE) con GTKWave..."
-	$(VIEWER) $(WAVE_FILE)
+	$(VIEWER) $(WAVE_FILE) &
 
 # Pulisce la directory dai file generati
 clean:

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 `include "fsm.v"
 
-module recognizer_tb;
+module fsm_tb;
 
     // Inputs
     reg x;
@@ -9,14 +9,14 @@ module recognizer_tb;
     reg rst;
 
     // Outputs
-    wire [1:0] z;
+    wire z;
 
     // Instantiate the Unit Under Test (UUT)
     detector uut (
         .x(x), 
         .clk(clk), 
-        .rst(rst)
-        .z(z), 
+        .rst(rst),
+        .z(z) 
     );
 
     `define assert(signal, value) \
