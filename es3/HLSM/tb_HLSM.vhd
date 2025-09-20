@@ -65,7 +65,7 @@ begin
     stim_proc: process
     begin
         report "Inizio del testbench per HLSM." severity note;
-        report "Inizializzazione della RAM..." severity note;
+
         for i in 0 to 1023 loop
             ram_memory(i) <= std_logic_vector(to_unsigned(i + 1, 16));
         end loop;

@@ -100,7 +100,7 @@ architecture beh of FSMD is
             ld_i <= '0';
             ld_avg <= '0';
             Finish <= '0';
-
+            finish_set <= '0';
             case(c_state) is
                 when IDLE =>
                     if Go = '1' then
