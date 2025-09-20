@@ -1,0 +1,9 @@
+   yz-->
+  |  |00|01|11|10| 
+wx|00| 1| 0| 1| 1| 
+  |01| 1| 1| 1| 0|
+  |11| 0| 0| 1| 0|
+  |10| 1| 0| 1| 1|
+
+F = y'z'w' + w'xy + yz + wx'z' + w'x'y 
+F = yz + x'z' + w'xy' -- semplificando i passaggi algebrici
