@@ -22,7 +22,6 @@ architecture beh of HLSM is
     signal c_state, n_state : state_type;
     signal acc, acc_n : unsigned (24 downto 0); -- accumulator
     signal i, i_n : unsigned(9 downto 0); -- address counter
-    signal avg, avg_n : unsigned(15 downto 0);
 
     begin
         WE <= '0'; -- No write operation to RAM, only read
@@ -35,12 +34,11 @@ architecture beh of HLSM is
                     c_state <= n_state;
                     acc <= acc_n;
                     i <= i_n;
-                    avg <= avg_n;
                 end if;
             end if;
         end process p1;
 
-        comb_p : process (c_state, Go, acc, i, avg, data_in)
+        comb_p : process (c_state, Go, acc, i, data_in)
         begin
             acc_n <= acc;
             i_n <= i;

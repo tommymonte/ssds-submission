@@ -26,7 +26,6 @@ end entity datapath;
 architecture beh of datapath is
     signal acc, acc_n : unsigned (24 downto 0); -- accumulator
     signal i, i_n     : unsigned(9 downto 0);   -- address counter
-    signal avg, avg_n : unsigned(15 downto 0);
 
 begin
     -- Datapath registers
@@ -60,10 +59,6 @@ begin
             i_n <= (others => '0');
         elsif ld_i = '1' then
             i_n <= i + 2;
-        end if;
-
-        if rst_avg = '1' then
-            avg_n <= (others => '0');
         end if;
 
         if i = 1022 then

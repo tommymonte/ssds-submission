@@ -22,7 +22,6 @@ architecture beh of FSMD is
     signal c_state, n_state : state_type;
     signal acc, acc_n : unsigned (24 downto 0); -- accumulator
     signal i, i_n : unsigned(9 downto 0); -- address counter
-    signal avg, avg_n : unsigned(15 downto 0);
     
     -- Control signals
     signal ld_acc, ld_i, ld_avg : std_logic;
@@ -64,10 +63,6 @@ architecture beh of FSMD is
                 if ld_i = '1' then
                     i_n <= i + 2;
                 end if;
-            end if;
-
-            if rst_avg = '1' then
-                avg_n <= (others => '0');
             end if;
 
             if i = 1022 then
