@@ -2,13 +2,11 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- L'entità del testbench è vuota
 entity FSMD_tb is
 end entity FSMD_tb;
 
 architecture beh of FSMD_tb is
     
-    -- 1. Dichiarazione del componente da testare (DUT)
     component FSMD is
         port(
             clk       : in  std_logic;
@@ -21,24 +19,23 @@ architecture beh of FSMD_tb is
         );
     end component FSMD;
 
-    -- Costanti
     constant CLK_PERIOD      : time    := 10 ns;
     constant EXPECTED_AVG_VAL: integer := 512; -- (1+2+...+1024)/1024 = 512
 
-    -- 2. Segnali per connettere il DUT
+
     signal tb_clk       : std_logic := '0';
-    signal tb_rst       : std_logic:='1' ; -- Inizializza il reset come attivo
+    signal tb_rst       : std_logic:='1' ; 
     signal tb_Go        : std_logic := '0';
-    signal tb_N_address : std_logic_vector(9 downto 0); -- Questo è un output, non serve inizializzarlo
-    signal tb_data_in   : std_logic_vector(15 downto 0) := (others => '0'); -- Inizializza a zero
+    signal tb_N_address : std_logic_vector(9 downto 0); 
+    signal tb_data_in   : std_logic_vector(15 downto 0) := (others => '0'); 
     signal tb_Average   : std_logic_vector(15 downto 0) := (others => '0');
     signal tb_Finish    : std_logic := '0';
-    -- 3. Modello della memoria RAM
+
     type ram_type is array (0 to 1023) of std_logic_vector(15 downto 0);
     signal ram_memory : ram_type;
 begin
 
-    -- 4. Istanza del DUT
+
     uut: FSMD port map (
         clk       => tb_clk,
         rst       => tb_rst,
@@ -49,7 +46,7 @@ begin
         Finish    => tb_Finish
     );
 
-    -- 5. Generatore di Clock
+
     clk_process: process
     begin
         tb_clk <= '0';
@@ -58,7 +55,7 @@ begin
         wait for CLK_PERIOD / 2;
     end process clk_process;
 
-    -- 6. Processo di simulazione della RAM (con 1 ciclo di latenza in lettura)
+
     ram_process: process (tb_clk)
     begin
         if rising_edge(tb_clk) then
@@ -66,7 +63,7 @@ begin
         end if;
     end process ram_process;
     
-    -- 7. Processo che genera gli stimoli e verifica i risultati
+
     stim_proc: process
     begin
         report "Inizio del testbench per HLSM." severity note;

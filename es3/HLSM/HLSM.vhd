@@ -68,7 +68,6 @@ architecture beh of HLSM is
                         n_state <= S2;
                     end if;
                 when S4 =>
-                    -- acc_n <= shift_right(acc, 9); 
                     acc_n <= acc / 512; -- divide by 512
                     n_state <= S5;
                 when S5 =>

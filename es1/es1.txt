@@ -5,5 +5,12 @@ wx|00| 1| 0| 1| 1|
   |11| 0| 0| 1| 0|
   |10| 1| 0| 1| 1|
 
-F = y'z'w' + w'xy + yz + wx'z' + w'x'y 
+y'z'w --> 1 in (00,00) e (01,00) verticale
+w'xy --> 1 in (01,00) e (01,01) orizzontale
+yz --> terza colonna verticale
+w'x'y --> 1 in (00,11) e (00,10) 
+wx'z' --> 1 in (10,10) e (10,00) 
+
+F = y'z'w' + w'xy + yz + wx'z' + w'x'y -- mia soluzione
 F = yz + x'z' + w'xy' -- semplificando i passaggi algebrici
+

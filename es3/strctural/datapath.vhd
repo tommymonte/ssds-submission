@@ -53,7 +53,7 @@ begin
         elsif ld_acc = '1' then
             acc_n <= acc + unsigned(data_in);
         elsif ld_avg = '1' then
-            acc_n <= acc / 512; -- or shift_right(acc, 9)
+            acc_n <= acc / 512; 
         end if;
 
         if rst_i = '1' then

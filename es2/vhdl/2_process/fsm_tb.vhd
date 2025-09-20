@@ -54,7 +54,7 @@ begin
         s_x <= '0'; wait for CLK_PERIOD;
         s_x <= '0'; wait for CLK_PERIOD;
 
-        report "Testbench completato.";
+        report "Testbench completato." severity note;
         wait;
     end process;
 

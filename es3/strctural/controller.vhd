@@ -26,7 +26,6 @@ architecture beh of controller is
     signal c_state, n_state : state_type;
 
 begin
-    -- State register
     SP : process(clk, rst) begin
         if rising_edge(clk) then
             if rst = '1' then
@@ -37,9 +36,8 @@ begin
         end if;
     end process SP;
 
-    -- Next state logic and control signal generation
     NSL : process(c_state, Go, ieq) begin
-        -- Default values for control signals
+
         rst_acc <= '0';
         rst_i   <= '0';
         rst_avg <= '0';

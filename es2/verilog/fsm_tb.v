@@ -41,9 +41,6 @@ module fsm_tb;
         #10;
         rst = 0;
         
-        // Inizio della sequenza di test
-        // I valori di 'x' vengono cambiati al fronte di discesa del clock
-        // per evitare race condition.
         @(negedge clk) x = 1;
         @(negedge clk) x = 0;
         @(negedge clk) x = 1;

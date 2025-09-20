@@ -22,7 +22,7 @@ compile:
 # Elabora, esegue e genera il file delle forme d'onda
 run: compile
 	@echo "--- Eseguendo la simulazione... ---"
-	ghdl -r $(TESTBENCH) --wave=$(WAVE_FILE)
+	ghdl -r $(TESTBENCH) --wave=$(WAVE_FILE) --stop-time=100us
 
 # Apre il file delle forme d'onda con GTKWave
 view:
