@@ -17,7 +17,8 @@ entity controller is
         rst_avg    : out std_logic;
         finish_set : out std_logic;
         -- External output
-        Finish     : out std_logic
+        Finish     : out std_logic;
+        WE        : out std_logic
     );
 end entity controller;
 
@@ -26,6 +27,8 @@ architecture beh of controller is
     signal c_state, n_state : state_type;
 
 begin
+    WE <= '0'; -- No write operation to RAM, only read
+
     SP : process(clk, rst) begin
         if rising_edge(clk) then
             if rst = '1' then

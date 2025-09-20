@@ -10,6 +10,7 @@ entity HLSM is
         -- RAM interface
         N_address : out std_logic_vector(9 downto 0);
         data_in : in  std_logic_vector(15 downto 0);
+        WE : out std_logic;
         -- Output
         Average : out std_logic_vector (15 downto 0);
         Finish : out std_logic
@@ -24,6 +25,7 @@ architecture beh of HLSM is
     signal avg, avg_n : unsigned(15 downto 0);
 
     begin
+        WE <= '0'; -- No write operation to RAM, only read
         p1: process (clk, rst) begin
             if rising_edge(clk) then
                 if rst = '1' then

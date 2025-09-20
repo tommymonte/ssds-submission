@@ -1,13 +1,13 @@
 v 4
-file . "controller.vhd" "ad19e453c8967289994b506aaa7cf5da0a087d37" "20250920162031.324":
-  entity controller at 1( 0) + 0 on 19;
-  architecture beh of controller at 24( 635) + 0 on 20;
-file . "datapath.vhd" "13c980c0d9871bc73071d51aa1ceb2800e6bb735" "20250920162031.326":
-  entity datapath at 1( 0) + 0 on 21;
-  architecture beh of datapath at 26( 769) + 0 on 22;
-file . "FSMD_structural.vhd" "317224b800e2de329adb95b58d5537617325f624" "20250920162031.327":
-  entity fsmd_structural at 1( 0) + 0 on 23;
-  architecture struct of fsmd_structural at 18( 463) + 0 on 24;
-file . "FSMD_structural_tb.vhd" "6737fd2c8c6bceaff845845eb002203960628b5f" "20250920162031.328":
-  entity fsmd_structural_tb at 1( 0) + 0 on 25;
-  architecture beh of fsmd_structural_tb at 8( 131) + 0 on 26;
+file . "FSMD_structural_tb.vhd" "617ab86e708b23a44d29b71dadb87fbda09035e4" "20250920165058.013":
+  entity fsmd_structural_tb at 1( 0) + 0 on 33;
+  architecture beh of fsmd_structural_tb at 8( 131) + 0 on 34;
+file . "FSMD_structural.vhd" "36cf495b91b9eb480be96dee3e4458d47c2a5041" "20250920165058.012":
+  entity fsmd_structural at 1( 0) + 0 on 31;
+  architecture struct of fsmd_structural at 19( 498) + 0 on 32;
+file . "datapath.vhd" "13c980c0d9871bc73071d51aa1ceb2800e6bb735" "20250920165058.011":
+  entity datapath at 1( 0) + 0 on 29;
+  architecture beh of datapath at 26( 769) + 0 on 30;
+file . "controller.vhd" "2b1002c5b375895052022503b21fbb3e9a794b8f" "20250920165058.009":
+  entity controller at 1( 0) + 0 on 27;
+  architecture beh of controller at 25( 670) + 0 on 28;

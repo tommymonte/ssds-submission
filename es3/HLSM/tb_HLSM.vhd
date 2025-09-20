@@ -14,13 +14,14 @@ architecture beh of tb_HLSM is
             Go        : in  std_logic;
             N_address : out std_logic_vector(9 downto 0);
             data_in   : in  std_logic_vector(15 downto 0);
+            WE        : out std_logic;
             Average   : out std_logic_vector(15 downto 0);
             Finish    : out std_logic
         );
     end component HLSM;
 
     constant CLK_PERIOD      : time    := 10 ns;
-    constant EXPECTED_AVG_VAL: integer := 512; -- (1+2+...+1024)/1024 = 512
+    constant EXPECTED_AVG_VAL: integer := 512; -- (1+2+...+1024)/512 = 512
 
     signal tb_clk       : std_logic := '0';
     signal tb_rst       : std_logic:='1' ;
@@ -29,6 +30,7 @@ architecture beh of tb_HLSM is
     signal tb_data_in   : std_logic_vector(15 downto 0) := (others => '0'); 
     signal tb_Average   : std_logic_vector(15 downto 0) := (others => '0');
     signal tb_Finish    : std_logic := '0';
+    signal tb_WE        : std_logic;
 
     type ram_type is array (0 to 1023) of std_logic_vector(15 downto 0);
     signal ram_memory : ram_type;
@@ -40,6 +42,7 @@ begin
         Go        => tb_Go,
         N_address => tb_N_address,
         data_in   => tb_data_in,
+        WE        => tb_WE,
         Average   => tb_Average,
         Finish    => tb_Finish
     );

@@ -10,6 +10,7 @@ entity FSMD is
         -- RAM interface
         N_address : out std_logic_vector(9 downto 0);
         data_in : in  std_logic_vector(15 downto 0);
+        WE : out std_logic;
         -- Output
         Average : out std_logic_vector (15 downto 0);
         Finish : out std_logic
@@ -28,9 +29,10 @@ architecture beh of FSMD is
     signal rst_acc, rst_i, rst_avg : std_logic;
     signal ieq : std_logic; -- i == 1022
     signal finish_set : std_logic;
-    signal rd_en : std_logic := '1'; -- read enable, sempre attivo in questo caso
+    signal rd_en : std_logic := '1';
 
     begin
+        WE <= '0'; -- No write operation to RAM, only read
         DP1 : process(clk, rst) begin
             if rising_edge(clk) then
                 if rst = '1' then
@@ -53,7 +55,7 @@ architecture beh of FSMD is
             elsif ld_acc = '1' then
                 acc_n <= acc + unsigned(data_in);
             elsif ld_avg = '1' then
-                acc_n <= acc / 512; -- o shift_right(acc, 9)
+                acc_n <= acc / 512; 
             end if;
 
             if rst_i = '1' then
@@ -92,7 +94,7 @@ architecture beh of FSMD is
                 end if;
             end if;
         end process SP;
-        -- Next state logic
+
         NSL : process(c_state, Go, ieq) begin
 
             -- Default values for control signals

@@ -14,13 +14,14 @@ architecture beh of FSMD_tb is
             Go        : in  std_logic;
             N_address : out std_logic_vector(9 downto 0);
             data_in   : in  std_logic_vector(15 downto 0);
+            WE        : out std_logic;
             Average   : out std_logic_vector(15 downto 0);
             Finish    : out std_logic
         );
     end component FSMD;
 
     constant CLK_PERIOD      : time    := 10 ns;
-    constant EXPECTED_AVG_VAL: integer := 512; -- (1+2+...+1024)/1024 = 512
+    constant EXPECTED_AVG_VAL: integer := 512;
 
 
     signal tb_clk       : std_logic := '0';
@@ -30,6 +31,7 @@ architecture beh of FSMD_tb is
     signal tb_data_in   : std_logic_vector(15 downto 0) := (others => '0'); 
     signal tb_Average   : std_logic_vector(15 downto 0) := (others => '0');
     signal tb_Finish    : std_logic := '0';
+    signal tb_WE        : std_logic;
 
     type ram_type is array (0 to 1023) of std_logic_vector(15 downto 0);
     signal ram_memory : ram_type;
@@ -42,6 +44,7 @@ begin
         Go        => tb_Go,
         N_address => tb_N_address,
         data_in   => tb_data_in,
+        WE        => tb_WE,
         Average   => tb_Average,
         Finish    => tb_Finish
     );
@@ -67,7 +70,7 @@ begin
     stim_proc: process
     begin
         report "Inizio del testbench per HLSM." severity note;
-        report "Inizializzazione della RAM..." severity note;
+
         for i in 0 to 1023 loop
             ram_memory(i) <= std_logic_vector(to_unsigned(i + 1, 16));
         end loop;
@@ -75,13 +78,12 @@ begin
         wait for 50 ns;
         tb_rst <= '0';
         wait for 20 ns;
-        -- Avvio del calcolo con un impulso su 'Go'
-        report "Avvio del calcolo con il segnale Go." severity note;
+
         tb_Go <= '1';
         wait for CLK_PERIOD;
         tb_Go <= '0';
         wait until tb_Finish = '1';
-        -- Attesa di un ulteriore ciclo per la stabilità dell'output
+
         wait for CLK_PERIOD;
         -- Print result
         report "Average calculated: " & integer'image(to_integer(unsigned(tb_Average)));

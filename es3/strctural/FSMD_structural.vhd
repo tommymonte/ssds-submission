@@ -9,6 +9,7 @@ entity FSMD_structural is
         -- RAM interface
         N_address : out std_logic_vector(9 downto 0);
         data_in   : in  std_logic_vector(15 downto 0);
+        WE        : out std_logic;
         -- Output
         Average   : out std_logic_vector (15 downto 0);
         Finish    : out std_logic
@@ -31,7 +32,8 @@ architecture struct of FSMD_structural is
             rst_i      : out std_logic;
             rst_avg    : out std_logic;
             finish_set : out std_logic;
-            Finish     : out std_logic
+            Finish     : out std_logic;
+            WE        : out std_logic
         );
     end component;
 
@@ -62,6 +64,7 @@ architecture struct of FSMD_structural is
     signal s_rst_i      : std_logic;
     signal s_rst_avg    : std_logic;
     signal s_finish_set : std_logic;
+    signal s_WE        : std_logic;
 
 begin
     -- Instantiate controller
@@ -77,7 +80,8 @@ begin
         rst_i      => s_rst_i,
         rst_avg    => s_rst_avg,
         finish_set => s_finish_set,
-        Finish     => Finish
+        Finish     => Finish,
+        WE        => s_WE
     );
 
     -- Instantiate datapath
