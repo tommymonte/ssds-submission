@@ -60,7 +60,7 @@ architecture beh of FSMD is
                 i_n <= (others => '0');
             else 
                 if ld_i = '1' then
-                    i_n <= i + 1;
+                    i_n <= i + 2;
                 end if;
             end if;
 
