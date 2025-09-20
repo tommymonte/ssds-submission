@@ -17,7 +17,6 @@ entity FSMD_structural is
 end entity FSMD_structural;
 
 architecture struct of FSMD_structural is
-
     -- Component declarations
     component controller is
         port(
@@ -67,6 +66,7 @@ architecture struct of FSMD_structural is
     signal s_WE        : std_logic;
 
 begin
+    WE <= s_WE;
     -- Instantiate controller
     C1: controller port map(
         clk        => clk,
